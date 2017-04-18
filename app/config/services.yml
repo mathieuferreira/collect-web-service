@@ -1,0 +1,15 @@
+services:
+    collect.type:
+        class: AppBundle\Type\CollectType
+        arguments: ["@doctrine_mongodb", "%timeout%"]
+        tags:
+            - { name: form.type }
+    user_exists.validator:
+        class: AppBundle\Type\Validator\UserExistsValidator
+        arguments: ["@doctrine_mongodb"]
+        tags:
+            - { name: validator.constraint_validator }
+    exception.listener:
+        class: AppBundle\Extensions\Listener\ExceptionEventSubscriber
+        tags:
+            - { name: kernel.event_subscriber }
