@@ -1,4 +1,4 @@
-.checkout
+Collect Web service
 =========
 
-A Symfony project created on April 15, 2017, 6:58 am.
+A symfony Rest API to collect datas.
