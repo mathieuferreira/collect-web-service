@@ -41,17 +41,17 @@ class DefaultController extends Controller
 
             $mongoManager->flush();
 
-            return $this->json(['success' => true]);
+            return $this->json(['s' => true]);
         }
 
         $json = [
-            'success' => false,
-            'errors' => []
+            's' => false,
+            'e' => []
         ];
 
         /** @var FormError $error */
         foreach($form->getErrors(true) as $error){
-            $json['errors'][] = $error->getMessage();
+            $json['e'][] = $error->getMessage();
         }
 
         return $this->json($json);

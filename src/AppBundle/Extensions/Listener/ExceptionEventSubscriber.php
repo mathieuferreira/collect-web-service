@@ -50,8 +50,8 @@ class ExceptionEventSubscriber implements EventSubscriberInterface{
 
         $event->setResponse(new JsonResponse(
             [
-                'success' => false,
-                'message' => $exception->getMessage()
+                's' => false,
+                'e' => [$exception->getMessage()]
             ]
         ));
     }

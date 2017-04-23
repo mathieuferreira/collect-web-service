@@ -35,7 +35,7 @@ class DefaultControllerTest extends WebTestCase
             ),
             'the "Content-Type" header is "application/json"' // optional message shown on failure
         );
-        $this->assertContains('"success":false', $client->getResponse()->getContent());
+        $this->assertContains('"s":false', $client->getResponse()->getContent());
 
         // Missing datas
         $this->executeTestForData($client, ['v'=>1], false);
@@ -87,16 +87,16 @@ class DefaultControllerTest extends WebTestCase
             ),
             'the "Content-Type" header is "application/json"' // optional message shown on failure
         );
-        $this->assertContains('"success"', $client->getResponse()->getContent());
+        $this->assertContains('"s"', $client->getResponse()->getContent());
         $json = json_decode($client->getResponse()->getContent(), true);
 
         if($success){
-            $this->assertTrue($json['success'], "Success return true");
+            $this->assertTrue($json['s'], "Success return true");
         }else{
-            $this->assertFalse($json['success'], "Success return false");
+            $this->assertFalse($json['s'], "Success return false");
             $this->assertGreaterThan(
                 0,
-                count($json['errors']),
+                count($json['e']),
                 "There are errors in json"
             );
         }
