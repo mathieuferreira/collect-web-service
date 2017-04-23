@@ -7,7 +7,7 @@ A symfony Rest API to collect datas.
 
 Path : /collect
 
-####### Return Examples:
+###### Return Examples:
 
 ```json
 {"s":false,"e":["Parameter t is missing", "User wui not found"]}
