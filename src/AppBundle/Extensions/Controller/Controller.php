@@ -8,6 +8,9 @@
 
 namespace AppBundle\Extensions\Controller;
 
+use Symfony\Component\Form\Form;
+use Symfony\Component\Form\FormError;
+
 class Controller extends \Symfony\Bundle\FrameworkBundle\Controller\Controller{
 
     #region Const
@@ -36,6 +39,25 @@ class Controller extends \Symfony\Bundle\FrameworkBundle\Controller\Controller{
         }
 
         return $this->container->get('doctrine_mongodb')->getManager();
+    }
+
+    public function json($data, $status = 200, $headers = array(), $context = array()){
+        if($data instanceof Form){
+            $errors = $data->getErrors(true);
+
+            $data = [
+                's' => count($errors) > 0
+            ];
+
+            if(count($errors) > 0){
+                /** @var FormError $error */
+                foreach($errors as $error){
+                    $data['e'][] = $error->getMessage();
+                }
+            }
+        }
+
+        return parent::json($data, $status, $headers, $context);
     }
 
     #endregion
